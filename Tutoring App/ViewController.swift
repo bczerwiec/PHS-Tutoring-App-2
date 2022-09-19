@@ -33,7 +33,7 @@ class ViewController: UIViewController {
         lastNameLabel.isHidden = false
         idLabel.isHidden = false
         enterButton.isHidden = false
-        print("Done")
+        
         
     }
     @IBAction func enter(_ sender: UIButton) {
