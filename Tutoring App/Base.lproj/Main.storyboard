@@ -51,7 +51,6 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ofz-bS-5Ta"/>
-                                    <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WEj-0K-ZMZ"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8ak-pc-LNA">
