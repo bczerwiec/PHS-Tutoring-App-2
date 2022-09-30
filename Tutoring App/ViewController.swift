@@ -20,10 +20,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        firstNameLabel.isHidden = true
-        lastNameLabel.isHidden = true   
-        idLabel.isHidden = true
-        enterButton.isHidden = true
     }
 
     @IBAction func signIn(_ sender: UIButton) {
