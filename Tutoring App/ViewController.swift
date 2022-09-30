@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     }
 
     @IBAction func signIn(_ sender: UIButton) {
-        tutoringLabel.isHidden = true
         signInButton.isHidden = true
         firstNameLabel.isHidden = false
         lastNameLabel.isHidden = false
