@@ -15,6 +15,16 @@ class ViewController: UIViewController {
     @IBOutlet weak var lastNameLabel: UITextField!
     @IBOutlet weak var idLabel: UITextField!
     @IBOutlet weak var enterButton: UIButton!
+    @IBOutlet weak var helpLabel: UILabel!
+    @IBOutlet weak var freshman: UIButton!
+    @IBOutlet weak var sophmore: UIButton!
+    @IBOutlet weak var junior: UIButton!
+    @IBOutlet weak var senior: UIButton!
+    @IBOutlet weak var subject: UITextField!
+    @IBOutlet weak var assignment: UIButton!
+    @IBOutlet weak var studying: UIButton!
+    @IBOutlet weak var signOut: UIButton!
+    
     var fullName: String = ""
     var IDNumber: String = ""
     
