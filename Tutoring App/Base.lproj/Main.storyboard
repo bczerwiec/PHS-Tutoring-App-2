@@ -49,9 +49,6 @@
                                         </fragment>
                                     </attributedString>
                                 </buttonConfiguration>
-                                <connections>
-                                    <action selector="signIn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2rV-cZ-SDE"/>
-                                </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Ql-D2-ahn">
                                 <rect key="frame" x="433" y="446" width="214" height="67"/>
@@ -117,7 +114,7 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="O59-93-c6C"/>
+                                    <action selector="freshmanButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aRS-8B-qe6"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zwc-3T-kQp">
@@ -135,7 +132,7 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Hnz-ER-Xwb"/>
+                                    <action selector="sophmoreButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vl2-eP-WqR"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfH-lO-2Cf">
@@ -153,7 +150,7 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qew-vr-DQn"/>
+                                    <action selector="assignmentButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0XC-GM-qeW"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o01-kM-DM0">
@@ -171,7 +168,7 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hhi-JA-rFm"/>
+                                    <action selector="juniorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ady-I4-Tgv"/>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UCa-cX-3t3">
@@ -189,7 +186,7 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PNb-rs-dyZ"/>
+                                    <action selector="seniorButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WSp-sG-j4G"/>
                                 </connections>
                             </button>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Who Did You Help?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsX-fe-rxK">
@@ -214,9 +211,13 @@
                                     </attributedString>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="enter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AA3-Mj-UEQ"/>
+                                    <action selector="studyingButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5hy-lJ-bdg"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="PHS logo" translatesAutoresizingMaskIntoConstraints="NO" id="9Su-j8-8zu">
+                                <rect key="frame" x="729" y="66" width="250" height="195"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemMintColor"/>
@@ -241,10 +242,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="68.888888888888886"/>
+            <point key="canvasLocation" x="-36" y="117"/>
         </scene>
     </scenes>
     <resources>
+        <image name="PHS logo" width="229" height="231"/>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

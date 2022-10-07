@@ -9,7 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tutoringLabel: UILabel!
-    
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var firstNameLabel: UITextField!
     @IBOutlet weak var lastNameLabel: UITextField!
@@ -27,6 +26,9 @@ class ViewController: UIViewController {
     
     var fullName: String = ""
     var IDNumber: String = ""
+    var year: String = ""
+    var whatSubject: String = ""
+    var whatHelp: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,12 @@ class ViewController: UIViewController {
                     lastNameLabel.isHidden = true
                     idLabel.isHidden = true
                     enterButton.isHidden = true
+                    helpLabel.isHidden = false
+                    freshman.isHidden = false
+                    sophmore.isHidden = false
+                    junior.isHidden = false
+                    senior.isHidden = false
+                    signOut.isHidden = false
                 }
             }
         }
@@ -81,6 +89,96 @@ class ViewController: UIViewController {
         print(firstNameLabel.isHidden, lastNameLabel.isHidden, idLabel.isHidden)
     }
     
+    @IBAction func freshmanButton(_ sender: UIButton) {
+        subject.isHidden = false
+        assignment.isHidden = false
+        studying.isHidden = false
+        helpLabel.isHidden = true
+        freshman.isHidden = true
+        sophmore.isHidden = true
+        junior.isHidden = true
+        senior.isHidden = true
+        signOut.isHidden = true
+        year = "Freshman"
+    }
     
+    @IBAction func sophmoreButton(_ sender: UIButton) {
+        subject.isHidden = false
+        assignment.isHidden = false
+        studying.isHidden = false
+        helpLabel.isHidden = true
+        freshman.isHidden = true
+        sophmore.isHidden = true
+        junior.isHidden = true
+        senior.isHidden = true
+        signOut.isHidden = true
+        year = "Sophmore"
+    }
+    
+    @IBAction func juniorButton(_ sender: UIButton) {
+        subject.isHidden = false
+        assignment.isHidden = false
+        studying.isHidden = false
+        helpLabel.isHidden = true
+        freshman.isHidden = true
+        sophmore.isHidden = true
+        junior.isHidden = true
+        senior.isHidden = true
+        signOut.isHidden = true
+        year = "Junior"
+    }
+ 
+    @IBAction func seniorButton(_ sender: UIButton) {
+        subject.isHidden = false
+        assignment.isHidden = false
+        studying.isHidden = false
+        helpLabel.isHidden = true
+        freshman.isHidden = true
+        sophmore.isHidden = true
+        junior.isHidden = true
+        senior.isHidden = true
+        signOut.isHidden = true
+        year = "Senior"
+    }
+    
+    @IBAction func assignmentButton(_ sender: UIButton) {
+        if subject.text == "" {
+            let dialogMessage = UIAlertController(title: "Error", message: "Subject Left Empty", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+             })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else {
+            whatSubject = "\(subject.text!)"
+            whatHelp = "Assignment"
+            helpLabel.isHidden = false
+            freshman.isHidden = false
+            sophmore.isHidden = false
+            junior.isHidden = false
+            senior.isHidden = false
+            signOut.isHidden = false
+        }
+    }
+    
+    @IBAction func studyingButton(_ sender: UIButton) {
+        if subject.text == "" {
+            let dialogMessage = UIAlertController(title: "Error", message: "Subject Left Empty", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+             })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else {
+            whatSubject = "\(subject.text!)"
+            whatHelp = "Studying"
+            helpLabel.isHidden = false
+            freshman.isHidden = false
+            sophmore.isHidden = false
+            junior.isHidden = false
+            senior.isHidden = false
+            signOut.isHidden = false
+        }
+    }
 }
 
