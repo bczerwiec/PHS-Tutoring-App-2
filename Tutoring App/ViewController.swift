@@ -23,12 +23,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var assignment: UIButton!
     @IBOutlet weak var studying: UIButton!
     @IBOutlet weak var signOut: UIButton!
+    @IBOutlet weak var cancel: UIButton!
     
+    var status: String = ""
     var fullName: String = ""
     var IDNumber: String = ""
     var year: String = ""
     var whatSubject: String = ""
     var whatHelp: String = ""
+    var studentsHelped: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +73,7 @@ class ViewController: UIViewController {
                 else {
                     fullName = "\(firstNameLabel.text!) \(lastNameLabel.text!)"
                     IDNumber = idLabel.text!
+                    status = "Signed In"
                     firstNameLabel.isHidden = true
                     lastNameLabel.isHidden = true
                     idLabel.isHidden = true
@@ -93,6 +97,7 @@ class ViewController: UIViewController {
         subject.isHidden = false
         assignment.isHidden = false
         studying.isHidden = false
+        cancel.isHidden = false
         helpLabel.isHidden = true
         freshman.isHidden = true
         sophmore.isHidden = true
@@ -106,6 +111,7 @@ class ViewController: UIViewController {
         subject.isHidden = false
         assignment.isHidden = false
         studying.isHidden = false
+        cancel.isHidden = false
         helpLabel.isHidden = true
         freshman.isHidden = true
         sophmore.isHidden = true
@@ -119,6 +125,7 @@ class ViewController: UIViewController {
         subject.isHidden = false
         assignment.isHidden = false
         studying.isHidden = false
+        cancel.isHidden = false
         helpLabel.isHidden = true
         freshman.isHidden = true
         sophmore.isHidden = true
@@ -132,6 +139,7 @@ class ViewController: UIViewController {
         subject.isHidden = false
         assignment.isHidden = false
         studying.isHidden = false
+        cancel.isHidden = false
         helpLabel.isHidden = true
         freshman.isHidden = true
         sophmore.isHidden = true
@@ -152,12 +160,19 @@ class ViewController: UIViewController {
         else {
             whatSubject = "\(subject.text!)"
             whatHelp = "Assignment"
+            subject.text = ""
             helpLabel.isHidden = false
             freshman.isHidden = false
             sophmore.isHidden = false
             junior.isHidden = false
             senior.isHidden = false
             signOut.isHidden = false
+            subject.isHidden = true
+            assignment.isHidden = true
+            studying.isHidden = true
+            cancel.isHidden = true
+            studentsHelped += 1
+            print(whatHelp,whatSubject,year,studentsHelped)
         }
     }
     
@@ -172,13 +187,42 @@ class ViewController: UIViewController {
         else {
             whatSubject = "\(subject.text!)"
             whatHelp = "Studying"
+            subject.text = ""
             helpLabel.isHidden = false
             freshman.isHidden = false
             sophmore.isHidden = false
             junior.isHidden = false
             senior.isHidden = false
             signOut.isHidden = false
+            subject.isHidden = true
+            assignment.isHidden = true
+            studying.isHidden = true
+            cancel.isHidden = true
+            studentsHelped += 1
+            print(whatHelp,whatSubject,year,studentsHelped)
         }
+    }
+    @IBAction func signOutButton(_ sender: UIButton) {
+        helpLabel.isHidden = true
+        freshman.isHidden = true
+        sophmore.isHidden = true
+        junior.isHidden = true
+        senior.isHidden = true
+        signOut.isHidden = true
+        signInButton.isHidden = false
+        status = "Signed Out"
+    }
+    @IBAction func cancelButton(_ sender: UIButton) {
+        helpLabel.isHidden = false
+        freshman.isHidden = false
+        sophmore.isHidden = false
+        junior.isHidden = false
+        senior.isHidden = false
+        signOut.isHidden = false
+        subject.isHidden = true
+        assignment.isHidden = true
+        studying.isHidden = true
+        cancel.isHidden = true
     }
 }
 
