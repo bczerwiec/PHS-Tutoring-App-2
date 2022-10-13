@@ -84,6 +84,9 @@ class ViewController: UIViewController {
                     junior.isHidden = false
                     senior.isHidden = false
                     signOut.isHidden = false
+                    firstNameLabel.resignFirstResponder()
+                    lastNameLabel.resignFirstResponder()
+                    idLabel.resignFirstResponder()
                 }
             }
         }
@@ -172,6 +175,7 @@ class ViewController: UIViewController {
             studying.isHidden = true
             cancel.isHidden = true
             studentsHelped += 1
+            subject.resignFirstResponder()
             print(whatHelp,whatSubject,year,studentsHelped)
         }
     }
@@ -199,6 +203,7 @@ class ViewController: UIViewController {
             studying.isHidden = true
             cancel.isHidden = true
             studentsHelped += 1
+            subject.resignFirstResponder()
             print(whatHelp,whatSubject,year,studentsHelped)
         }
     }
@@ -223,6 +228,11 @@ class ViewController: UIViewController {
         assignment.isHidden = true
         studying.isHidden = true
         cancel.isHidden = true
+        subject.resignFirstResponder()
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
