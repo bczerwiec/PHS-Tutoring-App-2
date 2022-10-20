@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var tutoringLabel: UILabel!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var firstNameLabel: UITextField!
@@ -32,11 +34,40 @@ class ViewController: UIViewController {
     var whatSubject: String = ""
     var whatHelp: String = ""
     var studentsHelped: Int = 0
-    
+    let locationManage = CLLocationManager()
+    var longitude = 0.0
+    var latitude = 0.0
+    var sendAlert = false
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManage.requestAlwaysAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManage.delegate = self
+            locationManage.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManage.startUpdatingLocation()
+        }
     }
 
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+            guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        latitude = locValue.latitude
+        longitude = locValue.longitude
+            print("locations = \(locValue.latitude) \(locValue.longitude)")
+        }
+    func boundary(personalLat: Double, personalLong: Double) -> Bool {
+        let libraryLat = 42.079890
+        let libraryLong = -87.949858
+        let distance = sqrt(((personalLat-libraryLat)*(personalLat-libraryLat)) + ((personalLong-libraryLong))*(personalLong-libraryLong))
+        let range = 0.00079452574
+        print(distance)
+        if distance > range {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
     @IBAction func signIn(_ sender: UIButton) {
         signInButton.isHidden = true
         firstNameLabel.isHidden = false
@@ -48,19 +79,19 @@ class ViewController: UIViewController {
     }
     @IBAction func enter(_ sender: UIButton) {
         if firstNameLabel.text == "" {
-            let dialogMessage = UIAlertController(title: "Error", message: "Box Left Empty", preferredStyle: .alert)
+            let message = UIAlertController(title: "Error", message: "Box Left Empty", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
              })
-            dialogMessage.addAction(ok)
-            self.present(dialogMessage, animated: true, completion: nil)
+            message.addAction(ok)
+            self.present(message, animated: true, completion: nil)
         }
         else {
             if lastNameLabel.text == "" {
-                let dialogMessage = UIAlertController(title: "Error", message: "Box Left Empty", preferredStyle: .alert)
+                let message = UIAlertController(title: "Error", message: "Box Left Empty", preferredStyle: .alert)
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
                  })
-                dialogMessage.addAction(ok)
-                self.present(dialogMessage, animated: true, completion: nil)
+                message.addAction(ok)
+                self.present(message, animated: true, completion: nil)
             }
             else {
                 if idLabel.text == "" {
@@ -108,6 +139,17 @@ class ViewController: UIViewController {
         senior.isHidden = true
         signOut.isHidden = true
         year = "Freshman"
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            latitude = locValue.latitude
+            longitude = locValue.longitude
+                print("locations = \(locValue.latitude) \(locValue.longitude)")
+            }
+        if boundary(personalLat: latitude, personalLong: longitude) == false {
+            sendAlert = true
+            print(sendAlert)
+        }
+        
     }
     
     @IBAction func sophmoreButton(_ sender: UIButton) {
