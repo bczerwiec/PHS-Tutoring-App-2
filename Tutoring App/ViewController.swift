@@ -26,6 +26,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var studying: UIButton!
     @IBOutlet weak var signOut: UIButton!
     @IBOutlet weak var cancel: UIButton!
+    @IBOutlet weak var stuID: UITextField!
+    @IBOutlet weak var tSpent: UITextField!
+    @IBOutlet weak var okButton: UIButton!
+    @IBOutlet weak var locationTest: UILabel!
     
     var status: String = ""
     var fullName: String = ""
@@ -33,11 +37,16 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var year: String = ""
     var whatSubject: String = ""
     var whatHelp: String = ""
+    var minHelped: Int = 0
+    var totalTime: Int = 0
     var studentsHelped: Int = 0
     let locationManage = CLLocationManager()
     var longitude = 0.0
     var latitude = 0.0
     var sendAlert = false
+    var exitTime = ""
+    var minWorking = 0
+    var IDArray:Array = [0]
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManage.requestAlwaysAuthorization()
@@ -45,15 +54,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             locationManage.delegate = self
             locationManage.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManage.startUpdatingLocation()
+            IDArray.remove(at: 0)
+
         }
     }
-
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-            guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        latitude = locValue.latitude
-        longitude = locValue.longitude
-            print("locations = \(locValue.latitude) \(locValue.longitude)")
-        }
     func boundary(personalLat: Double, personalLong: Double) -> Bool {
         let libraryLat = 42.079890
         let libraryLong = -87.949858
@@ -74,6 +78,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         lastNameLabel.isHidden = false
         idLabel.isHidden = false
         enterButton.isHidden = false
+    
+
         
         
     }
@@ -147,7 +153,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             }
         if boundary(personalLat: latitude, personalLong: longitude) == false {
             sendAlert = true
-            print(sendAlert)
+            let today = Date()
+            let hours   = (Calendar.current.component(.hour, from: today))
+            let minutes = (Calendar.current.component(.minute, from: today))
+            let seconds = (Calendar.current.component(.second, from: today))
+            exitTime = "\(hours):\(minutes):\(seconds)"
+            locationTest.text = "True"
+            print(sendAlert, exitTime)
         }
         
     }
@@ -164,6 +176,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         senior.isHidden = true
         signOut.isHidden = true
         year = "Sophmore"
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            latitude = locValue.latitude
+            longitude = locValue.longitude
+                print("locations = \(locValue.latitude) \(locValue.longitude)")
+            }
+        if boundary(personalLat: latitude, personalLong: longitude) == false {
+            sendAlert = true
+            let today = Date()
+            let hours   = (Calendar.current.component(.hour, from: today))
+            let minutes = (Calendar.current.component(.minute, from: today))
+            let seconds = (Calendar.current.component(.second, from: today))
+            exitTime = "\(hours):\(minutes):\(seconds)"
+            locationTest.text = "True"
+            print(sendAlert, exitTime)
+        }
     }
     
     @IBAction func juniorButton(_ sender: UIButton) {
@@ -178,6 +206,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         senior.isHidden = true
         signOut.isHidden = true
         year = "Junior"
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            latitude = locValue.latitude
+            longitude = locValue.longitude
+                print("locations = \(locValue.latitude) \(locValue.longitude)")
+            }
+        if boundary(personalLat: latitude, personalLong: longitude) == false {
+            sendAlert = true
+            let today = Date()
+            let hours   = (Calendar.current.component(.hour, from: today))
+            let minutes = (Calendar.current.component(.minute, from: today))
+            let seconds = (Calendar.current.component(.second, from: today))
+            exitTime = "\(hours):\(minutes):\(seconds)"
+            locationTest.text = "True"
+            print(sendAlert, exitTime)
+        }
     }
  
     @IBAction func seniorButton(_ sender: UIButton) {
@@ -192,6 +236,22 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         senior.isHidden = true
         signOut.isHidden = true
         year = "Senior"
+        func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+                guard let locValue: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+            latitude = locValue.latitude
+            longitude = locValue.longitude
+                print("locations = \(locValue.latitude) \(locValue.longitude)")
+            }
+        if boundary(personalLat: latitude, personalLong: longitude) == false {
+            sendAlert = true
+            let today = Date()
+            let hours   = (Calendar.current.component(.hour, from: today))
+            let minutes = (Calendar.current.component(.minute, from: today))
+            let seconds = (Calendar.current.component(.second, from: today))
+            exitTime = "\(hours):\(minutes):\(seconds)"
+            locationTest.text = "True"
+            print(sendAlert, exitTime)
+        }
     }
     
     @IBAction func assignmentButton(_ sender: UIButton) {
@@ -206,19 +266,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             whatSubject = "\(subject.text!)"
             whatHelp = "Assignment"
             subject.text = ""
-            helpLabel.isHidden = false
-            freshman.isHidden = false
-            sophmore.isHidden = false
-            junior.isHidden = false
-            senior.isHidden = false
-            signOut.isHidden = false
             subject.isHidden = true
             assignment.isHidden = true
             studying.isHidden = true
-            cancel.isHidden = true
-            studentsHelped += 1
+            stuID.isHidden = false
+            tSpent.isHidden = false
+            okButton.isHidden = false
             subject.resignFirstResponder()
-            print(whatHelp,whatSubject,year,studentsHelped)
         }
     }
     
@@ -234,21 +288,55 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
             whatSubject = "\(subject.text!)"
             whatHelp = "Studying"
             subject.text = ""
+            subject.isHidden = true
+            assignment.isHidden = true
+            studying.isHidden = true
+            stuID.isHidden = false
+            tSpent.isHidden = false
+            okButton.isHidden = false
+            subject.resignFirstResponder()
+        }
+    }
+    
+    @IBAction func ok(_ sender: UIButton) {
+        if tSpent.text == "" {
+            let dialogMessage = UIAlertController(title: "Error", message: "Time Spent Left Empty", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+             })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else if stuID.text == "" {
+            let dialogMessage = UIAlertController(title: "Error", message: "ID# Left Empty", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+             })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
+        else {
+            let addID = Int(stuID.text!)!
+            let stuTime = Int(tSpent.text!)!
+            minHelped += stuTime
+            IDArray.append(addID)
             helpLabel.isHidden = false
             freshman.isHidden = false
             sophmore.isHidden = false
             junior.isHidden = false
             senior.isHidden = false
             signOut.isHidden = false
-            subject.isHidden = true
-            assignment.isHidden = true
-            studying.isHidden = true
+            tSpent.isHidden = true
+            stuID.isHidden = true
             cancel.isHidden = true
+            okButton.isHidden = true
+            stuID.text = ""
+            tSpent.text = ""
+            stuID.resignFirstResponder()
+            tSpent.resignFirstResponder()
             studentsHelped += 1
-            subject.resignFirstResponder()
-            print(whatHelp,whatSubject,year,studentsHelped)
+            print(whatHelp,whatSubject,year,studentsHelped, minHelped, IDArray)
         }
     }
+    
     @IBAction func signOutButton(_ sender: UIButton) {
         helpLabel.isHidden = true
         freshman.isHidden = true
@@ -270,6 +358,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         assignment.isHidden = true
         studying.isHidden = true
         cancel.isHidden = true
+        okButton.isHidden = true
+        stuID.isHidden = true
+        tSpent.isHidden = true
+        subject.text = ""
+        stuID.text = ""
+        tSpent.text = ""
+        stuID.resignFirstResponder()
+        tSpent.resignFirstResponder()
         subject.resignFirstResponder()
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
