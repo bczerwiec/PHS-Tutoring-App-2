@@ -72,7 +72,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
-    @IBAction func signIn(_ sender: UIButton) {
+    @IBAction func signIn(_ sender: UIButton) { 
         signInButton.isHidden = true
         firstNameLabel.isHidden = false
         lastNameLabel.isHidden = false
